@@ -1,0 +1,48 @@
+name: Website link checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.md'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - '.github/workflows/website-links.yml'
+  pull_request:
+    paths:
+      - '**/*.html'
+      - '**/*.md'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - '.github/workflows/website-links.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 12 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+      - name: Check links in the website and documentation
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --root-dir .
+            --no-progress
+            --max-retries 2
+            --timeout 20
+            './**/*.html'
+            './**/*.md'
+          fail: true
+          jobSummary: true
+      - name: Check live website availability
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          curl --fail --silent --show-error --location --retry 2 https://rebeltortuga.github.io/ -o /dev/null
+          curl --fail --silent --show-error --location --retry 2 https://rebeltortuga.github.io/sitemap.xml -o /dev/null
