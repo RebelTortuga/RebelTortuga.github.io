@@ -1,0 +1,3 @@
+﻿User-agent: *
+Allow: /
+Sitemap: https://rebeltortuga.github.io/sitemap.xml
