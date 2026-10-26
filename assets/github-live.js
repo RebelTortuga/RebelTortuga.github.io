@@ -4,7 +4,7 @@
 
   const OWNER = 'RebelTortuga';
   const BASE = 'https://api.github.com';
-  const CACHE_KEY = 'rebeltortuga-github-public-v1';
+  const CACHE_KEY = 'rebeltortuga-github-public-v2';
   const MAX_AGE = 30 * 60 * 1000;
   const cards = Array.from(document.querySelectorAll('.project'));
   if (!cards.length) return;
@@ -101,6 +101,35 @@
       }
       shown++;
     });
+    if (shown) {
+      let summary = document.getElementById('github-summary-grid');
+      if (!summary) {
+        summary = document.createElement('div');
+        summary.id = 'github-summary-grid';
+        summary.setAttribute('aria-label', 'Live GitHub portfolio statistics');
+        summary.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:10px 0 24px';
+        status.insertAdjacentElement('afterend', summary);
+      }
+      const values = [
+        ['Repositories', shown],
+        ['Total stars', Object.values(data).reduce((n, r) => n + (Number(r.stars) || 0), 0)],
+        ['Published releases', Object.values(data).filter(r => r.version).length],
+        ['Latest-release asset downloads', Object.values(data).reduce((n, r) => n + (Number(r.downloads) || 0), 0)]
+      ];
+      summary.replaceChildren();
+      values.forEach(([label, value]) => {
+        const tile = document.createElement('div');
+        tile.style.cssText = 'background:#102331;border:1px solid #315062;border-radius:12px;padding:17px;color:#edf9fc';
+        const num = document.createElement('strong');
+        num.style.cssText = 'display:block;font-size:1.55rem;color:#76efdc';
+        num.textContent = Number(value).toLocaleString();
+        const caption = document.createElement('span');
+        caption.style.cssText = 'font-size:.8rem;color:#bdd2dc';
+        caption.textContent = label;
+        tile.append(num, caption);
+        summary.appendChild(tile);
+      });
+    }
     status.textContent = shown
       ? `GitHub data ${fromCache ? 'cached' : 'updated'} · Public repository information · Refreshes approximately every 30 minutes`
       : 'Project downloads remain available on GitHub.';
@@ -127,6 +156,7 @@
         const item = {
           stars: repo.stargazers_count,
           updated: repo.pushed_at,
+          downloads: 0,
           version: null,
           asset: null
         };
@@ -134,6 +164,7 @@
         try {
           const release = await getJson(`${BASE}/repos/${OWNER}/${slug}/releases/latest`);
           item.version = release.tag_name || null;
+          item.downloads = Array.isArray(release.assets) ? release.assets.reduce((n, a) => n + (Number(a.download_count) || 0), 0) : 0;
           const zip = Array.isArray(release.assets)
             ? release.assets.find((asset) => /\.zip$/i.test(asset.name || '') &&
                 asset.state === 'uploaded')
