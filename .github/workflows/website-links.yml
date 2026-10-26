@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out website
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Check links in the website and documentation
         uses: lycheeverse/lychee-action@v2
         with:
