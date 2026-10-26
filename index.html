@@ -3,344 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="RebelTortuga creates free Windows diagnostic and repair tools, gaming utilities, ComfyUI custom nodes, and local AI image and video workflows.">
-  <meta name="theme-color" content="#101815">
-  <title>RebelTortuga | Free Windows Tools & Local AI Workflows</title>
+  <meta name="theme-color" content="#07131c">
+  <meta name="description" content="RebelTortuga makes free Windows diagnostic and repair toolkits, gaming utilities, ComfyUI custom nodes, and local AI image and video workflows.">
   <link rel="canonical" href="https://rebeltortuga.github.io/">
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #0d1512;
-      color: #e8f1ea;
-      font: 16px/1.6 system-ui, sans-serif;
-    }
-    a { color: #8ee6a4; }
-    .wrap { max-width: 1120px; margin: auto; padding: 24px; }
-    header {
-      text-align: center;
-      padding: 55px 15px 40px;
-      background: radial-gradient(ellipse at top,#1e4930,#0d1512 70%);
-    }
-    .logo { width: 150px; max-width: 45vw; }
-    h1 { font-size: clamp(2.3rem,6vw,4rem); margin: 8px 0; }
-    h2 { line-height: 1.3; }
-    .subtitle { color: #b9cfc0; max-width: 680px; margin: auto; }
-    .tag {
-      display: inline-block;
-      border: 1px solid #428a58;
-      border-radius: 50px;
-      padding: 5px 14px;
-      color: #b2f4c3;
-      margin-top: 18px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(275px,1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-    .card {
-      background: #17231c;
-      border: 1px solid #2f4939;
-      padding: 24px;
-      border-radius: 16px;
-    }
-    .card h2 { font-size: 1.2rem; margin-top: 0; }
-    .card p { color: #b4c7ba; min-height: 48px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-    .actions a,.button {
-      display: inline-block;
-      background: #245c36;
-      color: #fff;
-      padding: 9px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .actions a:last-child { background: #34473a; }
-    a:hover { filter: brightness(1.25); }
-    a:focus-visible { outline: 3px solid #a7ffc1; outline-offset: 3px; }
-    footer {
-      text-align: center;
-      padding: 45px 20px;
-      border-top: 1px solid #294231;
-      color: #b4c7ba;
-    }
-      /* RebelTortuga banner */
-    .site-banner {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    header .logo {
-      display: none;
-    }
-
-    header {
-      padding: 35px 20px 45px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 25px 18px 35px;
-      }
-    }
-</style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RebelTortuga — Free Tools for Curious Minds">
+  <meta property="og:description" content="Practical Windows repair tools and free local AI workflows. No paywalls. Just useful projects.">
+  <meta property="og:url" content="https://rebeltortuga.github.io/">
+  <meta property="og:image" content="https://rebeltortuga.github.io/assets/RebelTortuga-banner.png">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="google-site-verification" content="DevrHAMpVFhj1bu8Z7xID6ZxvE_7tdlNq2F1umP5e14">
+  <title>RebelTortuga — Free Windows Tools &amp; Local AI Workflows</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    :root{color-scheme:dark;--bg:#07131c;--panel:#102331;--panel2:#0d1d29;--line:#284253;--text:#f2f7f9;--muted:#b2c5d0;--teal:#6af1db;--orange:#ffad66;--max:1190px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 'DM Sans',system-ui,sans-serif}a{color:inherit}button{font:inherit}img{max-width:100%}
+    :focus-visible{outline:3px solid var(--teal);outline-offset:4px}.skip{position:absolute;left:-9999px;top:12px;z-index:10;padding:12px;background:#fff;color:#000}.skip:focus{left:12px}
+    .container{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+    .site-nav{position:relative;z-index:3;border-bottom:1px solid #214051;background:#091924}.site-nav .container{min-height:76px;display:flex;align-items:center;gap:30px}
+    .wordmark{display:flex;align-items:center;gap:11px;text-decoration:none;font:700 1.18rem 'Space Grotesk',sans-serif;letter-spacing:-.04em}.wordmark img{height:38px;width:38px;object-fit:contain;border-radius:50%}.wordmark span span{color:var(--teal)}
+    .nav-links{display:flex;align-items:center;gap:30px;margin-left:auto}.nav-links a{font-weight:600;font-size:.91rem;text-decoration:none;color:#d4e4e8}.nav-links a:hover{color:var(--teal)}.nav-support{border:1px solid #55847f;border-radius:9px;padding:9px 15px!important;color:var(--teal)!important}
+    .hero{position:relative;isolation:isolate;min-height:560px;display:flex;align-items:center;overflow:hidden;background:#06111d}.hero-art{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 46%}.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(3,12,24,.94) 0%,rgba(4,14,27,.82) 30%,rgba(3,15,28,.20) 70%,rgba(3,12,22,.04) 100%)}
+    .hero-content{padding:70px 0;max-width:690px}.eyebrow{color:var(--teal);font-weight:700;font-size:.77rem;letter-spacing:.18em;text-transform:uppercase}.hero h1{font:700 clamp(3.7rem,8vw,7rem)/.94 'Space Grotesk',sans-serif;letter-spacing:-.075em;margin:20px 0 17px;text-shadow:0 5px 30px #071421aa}.hero h1 em{font-style:normal;color:var(--teal)}.hero-lead{font-size:clamp(1.13rem,2vw,1.42rem);line-height:1.48;max-width:555px;color:#e2eef4;text-shadow:0 2px 10px #0009}.hero-sub{font-size:.98rem;color:#c6d9e4;max-width:490px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;border-radius:10px;min-height:46px;padding:11px 19px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .18s,background .18s,border-color .18s}.button:hover{transform:translateY(-2px)}.button-primary{color:#06232c;background:var(--teal)}.button-primary:hover{background:#a5fff0}.button-secondary{border-color:#90acb2aa;background:#0b1d2abb;color:#fff}.button-secondary:hover{border-color:#fff}
+    .cred-strip{border-top:1px solid #23495d;border-bottom:1px solid #23495d;background:#0c2130}.cred-strip .container{display:flex;gap:28px;justify-content:space-between;padding:20px 0}.cred{display:flex;align-items:center;gap:12px;font-weight:650;font-size:.91rem;color:#d5eaf0}.cred svg{width:20px;height:20px;stroke:var(--teal);flex:none}
+    section{scroll-margin-top:25px}.section-pad{padding:90px 0 100px}.section-kicker{font-size:.76rem;text-transform:uppercase;letter-spacing:.17em;font-weight:700;color:var(--teal)}.section-title{font:700 clamp(2.2rem,4vw,3.8rem)/1.05 'Space Grotesk',sans-serif;letter-spacing:-.055em;margin:14px 0 17px}.section-intro{max-width:680px;color:var(--muted);font-size:1.08rem;margin:0 0 32px}
+    .filter-list{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 27px}.filter{cursor:pointer;border:1px solid #355366;background:#122935;color:#d1e3ec;padding:10px 17px;border-radius:999px;font-size:.9rem;font-weight:700;min-height:44px}.filter:hover{border-color:#69bdbb}.filter[aria-pressed="true"]{background:#76ebd9;color:#06252b;border-color:#76ebd9}
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.project{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #2e4b5b;background:linear-gradient(160deg,#132b39,#0d1e29);border-radius:17px;box-shadow:0 18px 42px #0002;transition:transform .2s,border-color .2s,box-shadow .2s}.project:hover{transform:translateY(-5px);border-color:#4b9d9f;box-shadow:0 24px 48px #0006}.project[hidden]{display:none}.preview{height:180px;background:#1e3442;overflow:hidden;position:relative;border-bottom:1px solid #345061}.preview img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.project:hover .preview img{transform:scale(1.035)}.preview:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0b1c29a8,transparent 53%);pointer-events:none}
+    .project-body{padding:23px 23px 24px;display:flex;flex:1;flex-direction:column}.category{font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--teal)}.project[data-category="ai"] .category{color:var(--orange)}.project h3{font:700 1.27rem/1.24 'Space Grotesk',sans-serif;letter-spacing:-.025em;margin:11px 0}.project p{color:#bfd1da;line-height:1.56;font-size:.92rem;margin:0 0 24px}.project-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:auto}.project-actions a{font-weight:750;text-decoration:none;font-size:.87rem}.project-actions a:first-child{color:var(--teal)}.project-actions a:last-child{color:#f2dfc9}.project-actions a:hover{text-decoration:underline}
+    .steps{padding:78px 0;background:linear-gradient(180deg,#0c2230,#0a1a25);border-block:1px solid #263f4f}.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;margin-top:33px}.step .step-number{font:700 2.1rem 'Space Grotesk',sans-serif;color:var(--orange)}.step h3{font:700 1.15rem 'Space Grotesk',sans-serif;margin:8px 0}.step p{color:var(--muted);margin:0;font-size:.95rem}
+    .about{padding:95px 0}.about-panel{display:grid;grid-template-columns:1.6fr 1fr;gap:50px;align-items:center;border-radius:24px;border:1px solid #2b4e5b;background:radial-gradient(circle at 92% 20%,#164c50 0%,#102533 48%,#0e202d 100%);padding:clamp(28px,5vw,64px)}.about p{color:#c0d5dd;max-width:650px}.about aside{padding:26px;border-radius:16px;background:#081b2699;border:1px solid #315e63}.about aside strong{font:700 1.35rem 'Space Grotesk',sans-serif}.about aside p{font-size:.92rem}
+    footer{border-top:1px solid #2c4755;padding:35px 0;background:#06121b;color:#a9c3ce}.footer-inner{display:flex;gap:20px;justify-content:space-between;align-items:center;flex-wrap:wrap}.footer-inner a{color:#d5f5f0;text-decoration:none}.footer-inner a:hover{text-decoration:underline}.legal{font-size:.78rem;max-width:900px;margin:24px auto 0;color:#86a2ae}
+    @media(max-width:990px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:510px}.hero-art{object-position:63% center}.about-panel{grid-template-columns:1fr}.cred-strip .container{flex-wrap:wrap}}
+    @media(max-width:680px){.container{width:min(var(--max),calc(100% - 32px))}.site-nav .container{gap:15px;min-height:70px}.nav-links{gap:13px}.nav-links a{font-size:.79rem}.nav-support{display:none}.wordmark{font-size:1.05rem}.wordmark img{height:32px;width:32px}.hero{display:block;min-height:0}.hero-art{position:relative;height:auto;aspect-ratio:2.44;object-fit:contain;object-position:center;display:block}.hero:before{display:none}.hero-content{padding:36px 0 47px}.hero h1{font-size:3.55rem;margin:12px 0}.hero-lead{font-size:1.14rem}.cred-strip .container{gap:13px;padding:16px 0}.cred{font-size:.77rem;gap:7px;width:calc(50% - 10px)}.cred svg{width:16px}.section-pad{padding:65px 0}.project-grid{grid-template-columns:1fr}.preview{height:195px}.step-grid{grid-template-columns:1fr;gap:27px}.steps{padding:65px 0}.about{padding:65px 0}.about-panel{padding:27px}.actions{gap:9px}.button{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
 </head>
 <body>
-  <img class="site-banner"
-     src="assets/RebelTortuga-banner.png"
-     alt="RebelTortuga mascot with blue and orange energy effects">
-<header>
-    <img class="logo"
-      src="https://raw.githubusercontent.com/RebelTortuga/RebelTortuga/main/assets/RebelTortuga.png"
-      alt="RebelTortuga turtle mascot">
-    <h1>RebelTortuga</h1>
-    <p class="subtitle">
-      Free Windows repair tools, gaming utilities, and local AI workflows.
-      Built by an independent creator who believes useful software
-      should be accessible to everyone.
-    </p>
-    <span class="tag">Free to use • No paywalls</span>
-  </header>
-
-  <main class="wrap">
-    <h2>Explore My Projects</h2>
-    <p>
-      Discover free diagnostic toolkits, ComfyUI custom nodes,
-      AI image editing, and video generation workflows.
-    </p>
-    <div class="grid">
-      <article class="card">
-  <h2>W</h2>
-  <p>W</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>w</h2>
-  <p>w</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>W</h2>
-  <p>r</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>F</h2>
-  <p>r</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/i">View project</a>
-    <a href="https://github.com/RebelTortuga/i/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>f</h2>
-  <p>r</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/i">View project</a>
-    <a href="https://github.com/RebelTortuga/i/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>F</h2>
-  <p>r</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/i">View project</a>
-    <a href="https://github.com/RebelTortuga/i/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>B</h2>
-  <p>a</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/r">View project</a>
-    <a href="https://github.com/RebelTortuga/r/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>b</h2>
-  <p>a</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/r">View project</a>
-    <a href="https://github.com/RebelTortuga/r/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>B</h2>
-  <p>a</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/r">View project</a>
-    <a href="https://github.com/RebelTortuga/r/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>S</h2>
-  <p>e</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/h">View project</a>
-    <a href="https://github.com/RebelTortuga/h/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>s</h2>
-  <p>e</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/h">View project</a>
-    <a href="https://github.com/RebelTortuga/h/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>W</h2>
-  <p>n</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/i">View project</a>
-    <a href="https://github.com/RebelTortuga/i/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>C</h2>
-  <p>m</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>c</h2>
-  <p>m</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>C</h2>
-  <p>s</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/u">View project</a>
-    <a href="https://github.com/RebelTortuga/u/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>Q</h2>
-  <p>e</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/w">View project</a>
-    <a href="https://github.com/RebelTortuga/w/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>c</h2>
-  <p>m</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>F</h2>
-  <p>e</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/r">View project</a>
-    <a href="https://github.com/RebelTortuga/r/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>S</h2>
-  <p>X</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/D">View project</a>
-    <a href="https://github.com/RebelTortuga/D/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>c</h2>
-  <p>m</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>F</h2>
-  <p>e</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/r">View project</a>
-    <a href="https://github.com/RebelTortuga/r/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>W</h2>
-  <p>n</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/a">View project</a>
-    <a href="https://github.com/RebelTortuga/a/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>c</h2>
-  <p>m</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>F</h2>
-  <p>e</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/r">View project</a>
-    <a href="https://github.com/RebelTortuga/r/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>W</h2>
-  <p>n</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/a">View project</a>
-    <a href="https://github.com/RebelTortuga/a/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>c</h2>
-  <p>m</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/o">View project</a>
-    <a href="https://github.com/RebelTortuga/o/releases/latest">Download</a>
-  </div>
-</article>
-<article class="card">
-  <h2>H</h2>
-  <p>g</p>
-  <div class="actions">
-    <a href="https://github.com/RebelTortuga/i">View project</a>
-    <a href="https://github.com/RebelTortuga/i/releases/latest">Download</a>
-  </div>
-</article>
+  <a class="skip" href="#projects">Skip to projects</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+      <a class="wordmark" href="#top"><img src="https://raw.githubusercontent.com/RebelTortuga/RebelTortuga/main/assets/RebelTortuga.png" alt=""><span>Rebel<span>Tortuga</span></span></a>
+      <div class="nav-links"><a href="#projects">Projects</a><a href="#about">About</a><a href="https://github.com/RebelTortuga" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="nav-support" href="https://ko-fi.com/rebeltortuga" target="_blank" rel="noopener noreferrer">Support the turtle ↗</a></div>
     </div>
+  </nav>
+  <header class="hero" id="top">
+    <img class="hero-art" src="assets/RebelTortuga-banner.png" alt="Green turtle mascot in a black leather jacket, surrounded by vivid electric blue and orange energy" fetchpriority="high">
+    <div class="container"><div class="hero-content">
+      <div class="eyebrow">Independent creator · Free software</div>
+      <h1>Rebel<em>Tortuga.</em></h1>
+      <p class="hero-lead">Useful tools. Creative workflows. <strong>Zero paywalls.</strong></p>
+      <p class="hero-sub">Windows troubleshooting, gaming utilities, and local AI projects—built to solve real problems and shared with the community.</p>
+      <div class="actions"><a class="button button-primary" href="#projects">Explore free projects ↓</a><a class="button button-secondary" href="https://github.com/RebelTortuga" target="_blank" rel="noopener noreferrer">Browse GitHub ↗</a></div>
+    </div></div>
+  </header>
+  <div class="cred-strip" aria-label="Project commitments"><div class="container">
+    <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Free to use</div>
+    <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/></svg>Clear documentation</div>
+    <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m8 10 3 2-3 2m5 0h3"/></svg>Local AI options</div>
+    <div class="cred"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 19h14"/></svg>Direct GitHub downloads</div>
+  </div></div>
+  <main>
+    <section class="section-pad" id="projects"><div class="container">
+      <div class="section-kicker">The project collection</div>
+      <h2 class="section-title">Find your next useful tool.</h2>
+      <p class="section-intro">Nine practical projects, from diagnosing a stubborn game or browser problem to creating images and video with AI on your own computer.</p>
+      <div class="filter-list" role="group" aria-label="Filter projects">
+        <button type="button" class="filter" data-filter="all" aria-pressed="true">All projects · 9</button>
+        <button type="button" class="filter" data-filter="tool" aria-pressed="false">Windows &amp; gaming · 4</button>
+        <button type="button" class="filter" data-filter="ai" aria-pressed="false">ComfyUI &amp; AI · 5</button>
+      </div>
+      <div class="project-grid" id="project-grid">
+        <article class="project" data-category="tool"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/wow-diagnostic-and-repair-toolkit/main/assets/screenshot.png" alt="World of Warcraft repair toolkit interface"></div><div class="project-body"><span class="category">Windows · Gaming</span><h3>WoW Diagnostic &amp; Repair Toolkit</h3><p>Investigate World of Warcraft problems, review read-only diagnostics, and choose repairs when you need them.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/wow-diagnostic-and-repair-toolkit/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/wow-diagnostic-and-repair-toolkit">Details</a></div></div></article>
+        <article class="project" data-category="ai"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/comfyui-clean-slate/main/assets/clean-slate-preview.png" alt="ComfyUI Clean Slate node preview"></div><div class="project-body"><span class="category">ComfyUI · Custom node</span><h3>ComfyUI Clean Slate</h3><p>Clear selected current images and prompts without deleting saved files or breaking workflow connections.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/comfyui-clean-slate/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/comfyui-clean-slate">Details</a></div></div></article>
+        <article class="project" data-category="tool"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/firefox-diagnostic-and-repair-toolkit/main/assets/screenshot.png" alt="Firefox repair toolkit interface"></div><div class="project-body"><span class="category">Windows · Browser</span><h3>Firefox Diagnostic &amp; Repair Toolkit</h3><p>Inspect browser issues, select a Firefox profile, back up settings, and review repair options.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/firefox-diagnostic-and-repair-toolkit/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/firefox-diagnostic-and-repair-toolkit">Details</a></div></div></article>
+        <article class="project" data-category="tool"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/brave-diagnostic-and-repair-toolkit/main/assets/screenshot.png" alt="Brave browser toolkit interface"></div><div class="project-body"><span class="category">Windows · Browser</span><h3>Brave Diagnostic &amp; Repair Toolkit</h3><p>Diagnose Brave browser problems, select backups, and make deliberate troubleshooting choices.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/brave-diagnostic-and-repair-toolkit/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/brave-diagnostic-and-repair-toolkit">Details</a></div></div></article>
+        <article class="project" data-category="tool"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/shell-diagnostic-and-repair-toolkit/main/assets/screenshot.png" alt="Windows shell diagnostic toolkit interface"></div><div class="project-body"><span class="category">Windows · Utilities</span><h3>Shell Diagnostic &amp; Repair Toolkit</h3><p>Check local shell tools and folders, make selected backups, and verify what was saved.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/shell-diagnostic-and-repair-toolkit/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/shell-diagnostic-and-repair-toolkit">Details</a></div></div></article>
+        <article class="project" data-category="ai"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/comfyui-free-local-qwen-image-edit/main/assets/workflow-preview.png" alt="Qwen image editing ComfyUI workflow layout"></div><div class="project-body"><span class="category">ComfyUI · Image editing</span><h3>Qwen Image Edit</h3><p>Describe an image change in plain language and optionally use a painted mask for targeted edits.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/comfyui-free-local-qwen-image-edit/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/comfyui-free-local-qwen-image-edit">Details</a></div></div></article>
+        <article class="project" data-category="ai"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/comfyui-free-local-sdxl-inpainting/main/assets/workflow-preview.png" alt="SDXL inpainting ComfyUI workflow layout"></div><div class="project-body"><span class="category">ComfyUI · Inpainting</span><h3>SDXL Inpainting</h3><p>Text-guided selection, mask refinement, crop-and-stitch editing, and an upscale pass.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/comfyui-free-local-sdxl-inpainting/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/comfyui-free-local-sdxl-inpainting">Details</a></div></div></article>
+        <article class="project" data-category="ai"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/comfyui-free-local-wan-video-quality/main/assets/workflow-preview.png" alt="Wan video quality ComfyUI workflow layout"></div><div class="project-body"><span class="category">ComfyUI · Image to video</span><h3>Wan Video — Quality</h3><p>Animate a reference image locally with Wan 2.2, adjustable prompts, and quality-focused settings.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/comfyui-free-local-wan-video-quality/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/comfyui-free-local-wan-video-quality">Details</a></div></div></article>
+        <article class="project" data-category="ai"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/comfyui-free-local-wan-video-high-resolution/main/assets/workflow-preview.png" alt="Wan higher-resolution video ComfyUI workflow layout"></div><div class="project-body"><span class="category">ComfyUI · Image to video</span><h3>Wan Video — Higher Resolution</h3><p>A higher-resolution local Wan 2.2 option with controls for motion and rendering time.</p><div class="project-actions"><a href="https://github.com/RebelTortuga/comfyui-free-local-wan-video-high-resolution/releases/latest">Download free ↗</a><a href="https://github.com/RebelTortuga/comfyui-free-local-wan-video-high-resolution">Details</a></div></div></article>
+      </div>
+    </div></section>
+    <section class="steps" aria-labelledby="getting-started"><div class="container"><span class="section-kicker">Simple by design</span><h2 class="section-title" id="getting-started">Pick a project. Make it yours.</h2><div class="step-grid">
+      <div class="step"><div class="step-number">01</div><h3>Explore the project</h3><p>Open its GitHub page to understand what it does, its requirements, and important limitations.</p></div>
+      <div class="step"><div class="step-number">02</div><h3>Download the release</h3><p>Choose the versioned ZIP from GitHub Releases. No purchase or payment information required.</p></div>
+      <div class="step"><div class="step-number">03</div><h3>Follow the README</h3><p>Use the installation and safety guidance. AI workflows need compatible local models and hardware.</p></div>
+    </div></div></section>
+    <section class="about" id="about"><div class="container"><div class="about-panel">
+      <div><span class="section-kicker">Behind the turtle</span><h2 class="section-title">Hey, I'm Adam.</h2><p>I'm an independent creator, gamer, and tech enthusiast who likes solving practical problems and exploring what local AI can do.</p><p>RebelTortuga is where I share the tools and workflows I build along the way. I want them to be useful, understandable, and free for the community. If you've found a bug or have an idea, I'd love constructive feedback through the relevant GitHub repository.</p><a class="button button-secondary" href="https://github.com/RebelTortuga" target="_blank" rel="noopener noreferrer">Meet the projects on GitHub ↗</a></div>
+      <aside><span class="section-kicker">Optional support</span><p><strong>Help this turtle get a new shell. 🐢</strong></p><p>Everything here is free to use. If a project helped you, a Ko-fi contribution is welcome—but never expected.</p><a class="button button-primary" href="https://ko-fi.com/rebeltortuga" target="_blank" rel="noopener noreferrer">Visit Ko-fi ↗</a></aside>
+    </div></div></section>
   </main>
-
-  <footer>
-    <p>Stay rebellious. Stay curious. Shell yeah! 🐢</p>
-    <p>
-      <a href="https://github.com/RebelTortuga">GitHub</a> ·
-      <a href="https://ko-fi.com/rebeltortuga">Support on Ko-fi</a>
-    </p>
-    <p>Independent community projects. Not affiliated with the referenced software vendors.</p>
-  </footer>
+  <footer><div class="container"><div class="footer-inner"><strong>🐢 RebelTortuga</strong><div><a href="#projects">Projects</a> · <a href="https://github.com/RebelTortuga">GitHub</a> · <a href="https://ko-fi.com/rebeltortuga">Ko-fi</a></div><span>Free tools. No paywalls. Stay curious.</span></div><p class="legal">Independent community projects; not official products of Blizzard, Mozilla, Brave, ComfyUI, or AI model providers. Model files and custom-node dependencies are installed separately where required.</p></div></footer>
+  <script>
+    (() => {
+      const buttons = [...document.querySelectorAll('[data-filter]')];
+      const cards = [...document.querySelectorAll('.project')];
+      buttons.forEach(button => button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+        cards.forEach(card => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
+      }));
+    })();
+  </script>
 </body>
 </html>
