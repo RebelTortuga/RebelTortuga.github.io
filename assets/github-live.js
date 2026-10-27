@@ -92,13 +92,7 @@
       });
       title.insertAdjacentElement('afterend', meta);
 
-      const download = card.querySelector('.project-actions a:first-child');
-      // Change only the download link, and only to GitHub's matching release asset.
-      if (download && item.asset &&
-          item.asset.startsWith(`https://github.com/${OWNER}/${slug}/releases/download/`)) {
-        download.href = item.asset;
-        download.textContent = 'Download ZIP ↗';
-      }
+      // Direct downloads paused during security review.
       shown++;
     });
     if (shown) {
