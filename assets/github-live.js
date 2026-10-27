@@ -92,7 +92,7 @@
       });
       title.insertAdjacentElement('afterend', meta);
 
-      // Direct downloads paused during security review.
+      // Keep the existing documentation links; do not rewrite them into direct ZIP downloads.
       shown++;
     });
     if (shown) {
@@ -182,3 +182,4 @@
 
   update();
 })();
+
