@@ -32,7 +32,10 @@ jobs:
       - name: Check links in the website and documentation
         uses: lycheeverse/lychee-action@v2
         with:
+          # Patreon returns HTTP 403 to GitHub-hosted link checks.
+          # Limit the exception to the verified creator page.
           args: >-
+            --exclude '^https://www[.]patreon[.]com/cw/RebelTortuga$'
             --root-dir .
             --no-progress
             --max-retries 2
