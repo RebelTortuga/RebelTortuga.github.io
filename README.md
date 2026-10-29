@@ -1,3 +1,5 @@
+<p align="center"><img src="https://rebeltortuga.github.io/assets/RebelTortuga-Wireframe-Banner.webp" alt="RebelTortuga corrected wireframe turtle banner — Free Software, Creative Tools, Real Solutions" width="100%"></p>
+
 # RebelTortuga.github.io
 The official home of RebelTortuga's free, open-source Windows troubleshooting toolkits, gaming utilities, and local ComfyUI image and video workflows. Browse individual project guides to learn what each tool does, review requirements and safety notes, and follow links to the source code and downloads on GitHub.
 
