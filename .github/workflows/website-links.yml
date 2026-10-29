@@ -35,7 +35,8 @@ jobs:
           # Patreon returns HTTP 403 to GitHub-hosted link checks.
           # Exclude only the two Patreon creator URL forms confirmed to return 403.
           args: >-
-            --exclude '^https://www[.]patreon[.]com/(cw/)?RebelTortuga/?            --root-dir .
+            --exclude '^https://www[.]patreon[.]com/(cw/)?RebelTortuga/?$'
+            --root-dir .
             --no-progress
             --max-retries 2
             --timeout 20
