@@ -1,6 +1,10 @@
 # RebelTortuga.github.io
 Official RebelTortuga website - free Windows repair tools, gaming utilities, and ComfyUI workflows
 
+## Browse the free project guides
+
+Explore [RebelTortuga's free Windows troubleshooting tools, gaming utilities, and local ComfyUI workflows](https://rebeltortuga.github.io/#projects). Each project has a dedicated guide and GitHub source repository.
+
 <!-- rebeltortuga-official-links:start -->
 ## Official RebelTortuga links
 
