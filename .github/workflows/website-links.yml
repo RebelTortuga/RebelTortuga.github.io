@@ -33,9 +33,23 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # Patreon returns HTTP 403 to GitHub-hosted link checks.
-          # Limit the exception to the verified creator page.
+          # Exclude only the two Patreon creator URL forms confirmed to return 403.
           args: >-
-            --exclude '^https://www[.]patreon[.]com/cw/RebelTortuga$'
+            --exclude '^https://www[.]patreon[.]com/(cw/)?RebelTortuga
+            --root-dir .
+            --no-progress
+            --max-retries 2
+            --timeout 20
+            './**/*.html'
+            './**/*.md'
+          fail: true
+          jobSummary: true
+      - name: Check live website availability
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          curl --fail --silent --show-error --location --retry 2 https://rebeltortuga.github.io/ -o /dev/null
+          curl --fail --silent --show-error --location --retry 2 https://rebeltortuga.github.io/sitemap.xml -o /dev/null
+
             --root-dir .
             --no-progress
             --max-retries 2
