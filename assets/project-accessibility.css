@@ -1,0 +1,29 @@
+/* Larger standalone link targets without changing the project-page identity. */
+header a,
+nav[aria-label="RebelTortuga social and community links"] a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+header .wrap {
+  align-items: center;
+}
+
+.preview > a {
+  display: block;
+}
+
+.preview > a:focus-visible,
+.gallery a:focus-visible {
+  outline-offset: -4px;
+}
+
+.panel h3 {
+  margin: 24px 0 12px;
+  font-size: 1.1rem;
+}
+
+.panel code {
+  overflow-wrap: anywhere;
+}
