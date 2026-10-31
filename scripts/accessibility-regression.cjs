@@ -138,7 +138,7 @@ async function screenshot(page, name) {
     const preview = page.locator('.preview > a');
     const expected = await preview.getAttribute('href');
     const [popup] = await Promise.all([page.waitForEvent('popup'), preview.click()]);
-    await popup.waitForLoadState('domcontentloaded');
+    await popup.waitForURL(expected, { waitUntil: 'domcontentloaded' });
     assert.equal(popup.url(), expected);
     const originalWidth = await popup.locator('img').evaluate(async image => {
       await image.decode();

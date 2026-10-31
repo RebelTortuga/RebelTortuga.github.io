@@ -9,6 +9,17 @@ on:
       - 'sitemap.xml'
       - 'favicon.svg'
       - 'scripts/site-audit.cjs'
+      - 'scripts/accessibility-regression.cjs'
+      - '.github/workflows/playwright-site-audit.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'assets/**'
+      - 'sitemap.xml'
+      - 'favicon.svg'
+      - 'scripts/site-audit.cjs'
+      - 'scripts/accessibility-regression.cjs'
       - '.github/workflows/playwright-site-audit.yml'
 jobs:
   audit:
@@ -23,8 +34,12 @@ jobs:
           node-version: '22'
       - run: npm install --no-save playwright@1.58.2
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/site-audit.cjs
-      - if: always()
+      - name: Check local accessibility regressions
+        timeout-minutes: 3
+        run: node scripts/accessibility-regression.cjs
+      - if: github.event_name != 'pull_request'
+        run: node scripts/site-audit.cjs
+      - if: always() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v6
         with:
           name: playwright-website-audit
