@@ -1,0 +1,32 @@
+name: Playwright Website Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'assets/**'
+      - 'sitemap.xml'
+      - 'favicon.svg'
+      - 'scripts/site-audit.cjs'
+      - '.github/workflows/playwright-site-audit.yml'
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/site-audit.cjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-website-audit
+          path: playwright-audit.md
+          if-no-files-found: warn
