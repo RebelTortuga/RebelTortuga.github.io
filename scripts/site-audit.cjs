@@ -14,7 +14,8 @@ const viewports = [{name:'desktop',width:1440,height:900},{name:'tablet',width:7
   if (!urls.length) throw new Error('No site URLs in sitemap');
   const checkedLinks = new Map();
   for (const url of urls) for (const viewport of viewports) {
-   const page = await context.newPage({viewport});
+   const page = await context.newPage();
+   await page.setViewportSize({width:viewport.width,height:viewport.height});
    const errors = [];
    page.on('pageerror', e=>errors.push(e.message));
    try {
