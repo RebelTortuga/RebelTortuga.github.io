@@ -25,7 +25,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/site-audit.cjs
       - if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: playwright-website-audit
           path: playwright-audit.md
