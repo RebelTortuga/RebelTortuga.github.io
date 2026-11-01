@@ -1,6 +1,6 @@
 # CRO and Schema.org optimization
 
-**Status:** Implemented — publication unverified
+**Status:** Published and verified
 
 **Started:** 2026-11-01
 **Final acceptance:** NOT READY TO PUBLISH (publication authorization has not been given)
@@ -63,3 +63,12 @@ This implementation was accepted together with the approved ComfyUI chooser and 
 - `git diff --check` passed; relative homepage/project links and assets resolve locally.
 
 **READY TO PUBLISH.** This is a local acceptance verdict only. Commit, merge, deployment, and live verification still require explicit authorization and subsequent evidence.
+
+## Publication verification — 2026-11-01
+
+The CRO/Schema.org changes were published through [PR #4](https://github.com/RebelTortuga/RebelTortuga.github.io/pull/4), implementation commit `1c7c3d4112c689b7870f9539007275731d54e004`, and squash merge commit `800a890db1825284cecb1a66f50b37ac9a0e5f90`.
+
+- Pages deployment, link checks, the published-site Playwright audit, and CodeQL all passed after the merge.
+- Live Pages returned parseable homepage and guide JSON-LD together with the published chooser and guide guidance.
+
+**PUBLISHED AND VERIFIED.** Screen-reader and physical-device testing remain unverified.

@@ -5,8 +5,8 @@ This is the concise record of RebelTortuga website initiatives. Detailed evidenc
 | Initiative | Status | Review | Verified references | Notes |
 | --- | --- | --- | --- | --- |
 | Historical Marketing Skills effort and website improvements | Completed — historical baseline reconciled | [Historical backfill](reviews/2026-11-01-historical-marketing-skills-backfill.md) | Reachable Git history plus retained validation/publication records | Covers the original Marketing Skills selection, earlier website work, and recovered evidence boundaries; the backfill was created 2026-11-01 and is not the original discovery date. |
-| Marketing and website quality discovery | Implemented — ready to publish locally | [Review](reviews/2026-11-01-marketing-website-quality-discovery.md) | README-backed chooser/guidance, local Playwright, JSON-LD, links, and diff checks passed | Priorities 2 and 3 are implemented; no deployment occurred. |
-| CRO and Schema.org optimization | Implemented — ready to publish locally | [Review](reviews/2026-11-01-cro-schema-optimization.md) | Local JSON-LD checks, `git diff --check`, and local accessibility regression passed | Accepted with the same unpublished guide changes; no deployment occurred. |
+| Marketing and website quality discovery | Published and verified | [Review](reviews/2026-11-01-marketing-website-quality-discovery.md) | PR #4, merge `800a890`, Pages, links, Playwright, CodeQL, and live HTTP checks | Chooser and README-backed guidance are live; screen-reader/physical-device checks remain unverified. |
+| CRO and Schema.org optimization | Published and verified | [Review](reviews/2026-11-01-cro-schema-optimization.md) | PR #4, merge `800a890`, Pages, links, Playwright, CodeQL, and live JSON-LD checks | Guide UX and structured-data changes are live; screen-reader/physical-device checks remain unverified. |
 
 ## Persistent decisions
 

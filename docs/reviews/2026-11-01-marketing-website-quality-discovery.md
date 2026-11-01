@@ -1,6 +1,6 @@
 # Marketing and website quality discovery
 
-**Status:** Completed — recommendations pending approval
+**Status:** Published and verified
 
 **Started:** 2026-11-01
 
@@ -106,3 +106,14 @@ Priorities 2 and 3 were approved and implemented as part of the outstanding unpu
 - No commit, pull request, push, merge, deployment, or live verification has occurred.
 
 **READY TO PUBLISH.** The combined local implementation is ready for the user's explicit publication approval; it is not deployed.
+
+## Publication verification — 2026-11-01
+
+- Publication branch: `publish/website-improvements-2026-11-01`
+- Implementation commit: `1c7c3d4112c689b7870f9539007275731d54e004`
+- Pull request: [#4](https://github.com/RebelTortuga/RebelTortuga.github.io/pull/4)
+- Squash merge commit on `main`: `800a890db1825284cecb1a66f50b37ac9a0e5f90`
+- Post-merge GitHub Actions passed: Pages build and deployment (`41341824623`), Website link checks (`41341824957`), Playwright Website Audit (`41341824988`), and CodeQL security scanning (`41341824927`).
+- Live Pages verification returned the chooser, its five expected guide destinations, all five new ComfyUI guidance sections, and parseable homepage/guide JSON-LD.
+
+**PUBLISHED AND VERIFIED.** Screen-reader and physical-device testing remain outside this verification scope. Third-party release and image hosts can change after the successful deployment check.
