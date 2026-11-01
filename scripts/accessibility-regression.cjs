@@ -70,6 +70,16 @@ async function screenshot(page, name) {
     assert.equal(await status.getAttribute('role'), 'status');
     assert.equal(await status.getAttribute('aria-live'), 'polite');
     assert.equal(await status.getAttribute('aria-atomic'), 'true');
+    const chooserLinks = page.locator('.workflow-option a');
+    assert.equal(await chooserLinks.count(), 5, 'The ComfyUI chooser must offer all five workflows');
+    const chooserPaths = await chooserLinks.evaluateAll(links => links.map(link => new URL(link.href).pathname));
+    assert.deepEqual(chooserPaths, [
+      '/projects/comfyui-clean-slate.html',
+      '/projects/comfyui-free-local-qwen-image-edit.html',
+      '/projects/comfyui-free-local-sdxl-inpainting.html',
+      '/projects/comfyui-free-local-wan-video-quality.html',
+      '/projects/comfyui-free-local-wan-video-high-resolution.html'
+    ]);
 
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
@@ -81,7 +91,7 @@ async function screenshot(page, name) {
           Math.min(r.bottom, s.bottom) > Math.max(r.top, s.top)));
       });
       assert.equal(overlap, false, `${width}px header links overlap`);
-      await targets(page, '.site-nav a, .project-actions a, nav[aria-label="RebelTortuga social and community links"] a');
+      await targets(page, '.site-nav a, .workflow-option a, .project-actions a, nav[aria-label="RebelTortuga social and community links"] a');
       await page.evaluate(() => scrollTo(0, 0));
       await screenshot(page, `home-${width}`);
       console.log(`PASS homepage layout and touch targets at ${width}px`);

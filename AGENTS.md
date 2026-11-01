@@ -56,5 +56,17 @@ The documented audit checks sitemap pages at desktop/tablet/mobile widths, image
 - When authorized to publish, confirm the commit/push, GitHub Actions results, deployment, and live behavior separately. A local pass is not a deployment; a green published-site audit is not proof of uncommitted changes.
 - If repository access, permissions, credentials, network, or deployment are unavailable, complete the verifiable local work and provide precise remaining commands or steps. On Windows, prefer PowerShell 7 commands.
 
+## Persistent website improvement reviews
+
+For each new, distinct website improvement initiative, create one dated review file in `docs/reviews/` before discovery or implementation. Keep follow-ups and corrections for that initiative in the same file; do not create a review for every prompt, test, or small revision.
+
+Use `docs/website-improvement-tracker.md` for the concise cross-initiative status and decisions, and `docs/reviews/README.md` as the index. The individual review is the detailed record: objective, scope, baseline, verified findings and evidence, decisions, affected files, validation, uncertainties, and final acceptance.
+
+Before requesting publication, finalize the initiative review with exact changed files, implemented and rejected proposals, test results, outstanding limitations, and a `READY TO PUBLISH` or `NOT READY TO PUBLISH` verdict. Update the tracker and index at the same time.
+
+Only include the finalized review with source changes after explicit user authorization to commit or open a PR. Do not commit, push, merge, or deploy automatically. After a deployment is verified, update the same review, tracker, and index with the commit or PR, deployment evidence, and follow-up issues; request authorization before making a documentation-only follow-up commit.
+
+Reuse still-valid evidence instead of rerunning audits solely to populate documentation. Clearly distinguish `Published` (merged and deployment verified), `Implemented` (local or branch changes without verified publication), `Pending`, `Deferred`, `Rejected`, and `Unverified`. Preserve settled decisions: hero-eyebrow labels are intentional; rendered evidence resolved the prior cramped-padding concern with 22px padding; do not reopen those findings without material new evidence. Never modify `.impeccable/` or add suppressions as part of a website initiative.
+
 ## Completion report
 Conclude with a concise, factual handoff covering **what changed**, **files or pages affected**, **checks actually run and results**, **commit/deployment status if applicable**, and **remaining issues or unverified checks**. State blockers explicitly. Do not claim a test, accessibility review, push, or deployment occurred unless verified.
