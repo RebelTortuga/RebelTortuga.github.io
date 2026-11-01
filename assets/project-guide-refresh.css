@@ -1,0 +1,123 @@
+/* Scoped refinements for the pre-existing non-Wan project guides. */
+.project-guide-refresh .preview {
+  margin-top: 6px;
+  padding: clamp(8px, 1.5vw, 14px);
+  background: #0a1d29;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, .24);
+}
+
+.project-guide-refresh .preview > a {
+  border: 1px solid #3b6170;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #07131c;
+}
+
+.project-guide-refresh .preview img {
+  background: #07131c;
+}
+
+.project-guide-refresh .quick-start {
+  margin: 28px 0 8px;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid #315062;
+  border-radius: 16px;
+  background: #0d2432;
+}
+
+.project-guide-refresh .quick-start h2 {
+  margin-bottom: 8px;
+}
+
+.project-guide-refresh .quick-start > p {
+  max-width: 68ch;
+  margin: 0;
+}
+
+.project-guide-refresh .quick-start ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: quick-start;
+}
+
+.project-guide-refresh .quick-start li {
+  position: relative;
+  min-height: 100%;
+  padding: 15px 15px 15px 50px;
+  border: 1px solid #2b495c;
+  border-radius: 12px;
+  background: #102331;
+  color: #d3e2e7;
+  counter-increment: quick-start;
+}
+
+.project-guide-refresh .quick-start li::before {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #76efdc;
+  color: #072932;
+  content: counter(quick-start);
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+.project-guide-refresh .content {
+  align-items: start;
+}
+
+.project-guide-refresh .panel {
+  padding: clamp(22px, 3vw, 30px);
+}
+
+.project-guide-refresh .panel h2 {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #315062;
+}
+
+.project-guide-refresh .panel ol,
+.project-guide-refresh .panel ul {
+  padding-left: 1.25rem;
+}
+
+.project-guide-refresh .panel h3 {
+  padding-top: 22px;
+  border-top: 1px solid #284553;
+}
+
+.project-guide-refresh .panel a {
+  text-underline-offset: 3px;
+}
+
+.project-guide-refresh .panel > ul a {
+  display: inline-block;
+  padding: 4px 0;
+}
+
+.project-guide-refresh .panel .note {
+  margin: 22px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #284553;
+}
+
+@media (min-width: 701px) {
+  .project-guide-refresh .preview img {
+    max-height: none;
+    object-fit: initial;
+  }
+}
+
+@media (max-width: 700px) {
+  .project-guide-refresh .quick-start ol {
+    grid-template-columns: 1fr;
+  }
+}
