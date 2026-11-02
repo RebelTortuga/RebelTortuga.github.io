@@ -69,4 +69,4 @@ For each release, publish the new ZIP filename and its newly calculated SHA-256 
 
 All nine approved versions were committed through scoped pull requests, merged, packaged, published, downloaded, and hash-verified. The four Windows tools and three older workflow repositories use the explicit root-level manifests above. Existing publish workflows created the Clean Slate and Semi-AI Image Editing ZIPs with a containing project folder and current repository metadata in addition to every required project file; those immutable automated assets were preserved and independently validated rather than replaced.
 
-No historical tag, release, or asset was overwritten or deleted. The website publication is tracked in the linked trust and credibility review.
+No historical tag, release, or asset was overwritten or deleted. The website publication was completed and verified; the linked trust and credibility review records the exact merge, Actions, and live-site evidence.
