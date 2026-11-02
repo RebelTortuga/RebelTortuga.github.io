@@ -15,17 +15,17 @@
     return url ? url.pathname.split('/')[2] : null;
   });
 
-  // A compact status stays out of the way of the existing design.
+  // Keep portfolio-level GitHub details after the project cards.
   const status = document.createElement('p');
   status.className = 'github-live-status';
   status.setAttribute('role', 'status');
   status.textContent = 'Checking public GitHub project details…';
   const grid = document.getElementById('project-grid');
-  if (grid) grid.parentNode.insertBefore(status, grid);
+  if (grid) grid.insertAdjacentElement('afterend', status);
 
   const style = document.createElement('style');
   style.textContent = `
-    .github-live-status{font-size:.8rem;color:#8faebd;margin:-5px 0 20px}
+    .github-live-status{font-size:.8rem;color:#8faebd;margin:24px 0 0}
     .github-live-meta{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 15px}
     .github-live-meta span{display:inline-flex;align-items:center;min-height:26px;
       border:1px solid #365565;border-radius:6px;background:#0a202d;
@@ -101,7 +101,7 @@
         summary = document.createElement('div');
         summary.id = 'github-summary-grid';
         summary.setAttribute('aria-label', 'Live GitHub portfolio statistics');
-        summary.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:10px 0 24px';
+        summary.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:10px 0 0';
         status.insertAdjacentElement('afterend', summary);
       }
       const values = [
