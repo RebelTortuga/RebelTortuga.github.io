@@ -1,6 +1,6 @@
 # Trust and credibility discovery
 
-**Status:** Releases published — website publication in progress
+**Status:** Published and verified
 
 **Started:** 2026-11-01
 
@@ -106,7 +106,7 @@ The nine repositories were fetched and compared with their latest tags. Each cur
 
 ### Implementation state
 
-**RELEASES PUBLISHED — WEBSITE PUBLICATION IN PROGRESS.** The nine approved patch releases are public and their historical predecessors remain unchanged. The local website now references the new release tags, publication date, exact asset names, verified digests, merged maintenance commits, and tag-pinned previews.
+**PUBLISHED AND VERIFIED.** The nine approved patch releases are public and their historical predecessors remain unchanged. The website now references the new release tags, publication date, exact asset names, verified digests, merged maintenance commits, and tag-pinned previews.
 
 ### Implementation validation
 
@@ -136,3 +136,10 @@ The approved documentation-only patch releases were published on 2026-11-02 UTC:
 | Wan Video High Resolution | [v1.0.1](https://github.com/RebelTortuga/comfyui-free-local-wan-video-high-resolution/releases/tag/v1.0.1) | `3c9cdd46cbb09671de205d78bbbeb25c3ba64dc9df7481acd3163627e8c18a8d` |
 
 Each asset was downloaded after publication and matched both GitHub's recorded digest and the checksum in its release body. Archive manifests, clean extraction, applicable PowerShell/Python/JavaScript/workflow validation, and Microsoft Defender scanning passed. Clean Slate and Semi-AI Image Editing were published by their existing release workflows; their validated ZIPs include the required project files plus current repository metadata. No historical release or asset was replaced or deleted.
+
+## Website publication verification
+
+- Website [PR #7](https://github.com/RebelTortuga/RebelTortuga.github.io/pull/7) was squash-merged as `557a8656ee8b572ebc2fa5a6b0c5fedf1392f6df`.
+- GitHub Pages deployment, Website link checks, CodeQL security scanning, and the on-main Playwright Website Audit completed successfully for that commit.
+- Cache-busted live HTTP checks returned 200 for the homepage, shared guide stylesheet, and all nine project guides. Each live guide contained its actual published tag, asset filename, SHA-256 digest, November 2, 2026 UTC publication date, and a tag-pinned release-specific preview URL.
+- The local Edge regression and the CI Playwright audit both passed 320px, 390px, and 1440px coverage, guide release-evidence assertions, link behavior, and JavaScript/local-HTTP error checks.
