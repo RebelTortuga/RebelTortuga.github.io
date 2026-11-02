@@ -48,7 +48,7 @@ const releaseEvidence = {
   }
 };
 const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
-  '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png' };
+  '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.mp4': 'video/mp4' };
 const server = http.createServer((req, res) => {
   const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
   const file = path.resolve(root, '.' + (pathname.endsWith('/') ? pathname + 'index.html' : pathname));
@@ -97,6 +97,18 @@ async function screenshot(page, name) {
     });
     await page.goto(base);
     await page.evaluate(() => document.fonts.ready);
+    const featuredVideo = page.locator('.intro-video video');
+    await assert.doesNotReject(featuredVideo.evaluate(async video => {
+      if (!video.poster.endsWith('/assets/RebelTortuga-9-Free-Tools-2026-splash.png'))
+        throw new Error('Featured video does not use the approved splash image');
+      await video.play();
+      await new Promise(resolve => setTimeout(resolve, 400));
+      if (video.currentTime <= 0) throw new Error('Featured video did not advance during playback');
+      video.pause();
+    }));
+    assert.equal((await page.request.get(base + '/assets/RebelTortuga-9-Free-Tools-2026-splash.png')).ok(), true);
+    assert.equal((await page.request.get(base + '/assets/RebelTortuga-9-Free-Tools-FINAL-v3.mp4')).ok(), true);
+    console.log('PASS featured video poster and local playback');
     const projectPaths = await page.locator('.project-actions a:first-child')
       .evaluateAll(links => links.map(a => new URL(a.href).pathname));
     assert.equal(projectPaths.length, 9);
