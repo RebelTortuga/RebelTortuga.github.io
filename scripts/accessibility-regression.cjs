@@ -9,6 +9,44 @@ const { chromium } = require('playwright');
 
 const root = path.resolve(__dirname, '..');
 const screenshots = process.env.AUDIT_SCREENSHOT_DIR;
+const releaseEvidence = {
+  '/projects/wow-diagnostic-and-repair-toolkit.html': {
+    version: 'v1.0.1', asset: 'WoW-Diagnostic-and-Repair-Toolkit-v1.0.1-GitHub.zip',
+    sha256: '6e04a103637915ee6b0cbfbc31f63f8eb4a4dc358de6f479c005cd408d87d711', preview: 'release'
+  },
+  '/projects/firefox-diagnostic-and-repair-toolkit.html': {
+    version: 'v1.0.1', asset: 'Firefox-Diagnostic-and-Repair-Toolkit-v1.0.1-GitHub.zip',
+    sha256: 'b98070ef5fa56087e29a05275914bb9e1b27b76f671791c89a95ae340bd94508', preview: 'release'
+  },
+  '/projects/brave-diagnostic-and-repair-toolkit.html': {
+    version: 'v1.0.1', asset: 'Brave-Diagnostic-and-Repair-Toolkit-v1.0.1-GitHub.zip',
+    sha256: 'f4146d4062c520f225f1a18d28740a2c94d186050b97a734243fb3871f428db8', preview: 'release'
+  },
+  '/projects/shell-diagnostic-and-repair-toolkit.html': {
+    version: 'v1.0.1', asset: 'Shell-Diagnostic-and-Repair-Toolkit-v1.0.1-GitHub.zip',
+    sha256: '69ff3f2e6aea6e0e043438bd0b2180ad81854055ff1fb4bd019d7c5362449724', preview: 'release'
+  },
+  '/projects/comfyui-clean-slate.html': {
+    version: 'v0.2.1', asset: 'comfyui-clean-slate-v0.2.1.zip',
+    sha256: '701b0961e6d1eb4b23f55c671df183be5b133c24ed2d609689a3f9e2defc5873', preview: 'release', tested: true
+  },
+  '/projects/comfyui-free-local-qwen-image-edit.html': {
+    version: 'v1.1.1', asset: 'comfyui-free-local-qwen-image-edit-v1.1.1.zip',
+    sha256: '32dfec574b04b06b03bdf111988c0466a438c489ba4f3a1ef26b776a5287d1d9', preview: 'release', tested: true
+  },
+  '/projects/comfyui-free-local-sdxl-inpainting.html': {
+    version: 'v1.0.1', asset: 'comfyui-free-local-sdxl-inpainting-v1.0.1.zip',
+    sha256: '4e898eccb6131e3f36c7e99828d0b4c06e32912c52f1dba57526216f7d14d505', preview: 'release', tested: true
+  },
+  '/projects/comfyui-free-local-wan-video-quality.html': {
+    version: 'v1.0.1', asset: 'comfyui-free-local-wan-video-quality-v1.0.1.zip',
+    sha256: '1dd90cf2d7a46256fa1d77b3df5f972118d979f116292f565fcf87d3123b1064', preview: 'release', tested: true
+  },
+  '/projects/comfyui-free-local-wan-video-high-resolution.html': {
+    version: 'v1.0.1', asset: 'comfyui-free-local-wan-video-high-resolution-v1.0.1.zip',
+    sha256: '3c9cdd46cbb09671de205d78bbbeb25c3ba64dc9df7481acd3163627e8c18a8d', preview: 'release', tested: true
+  }
+};
 const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
   '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png' };
 const server = http.createServer((req, res) => {
@@ -33,7 +71,7 @@ async function targets(page, selector) {
 
 async function layout(page) {
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false,
-    'Unexpected horizontal overflow');
+    `Unexpected horizontal overflow at ${page.url()}`);
 }
 
 async function screenshot(page, name) {
@@ -109,6 +147,8 @@ async function screenshot(page, name) {
 
     // Check all edited guide templates without repeating a full multi-viewport site audit.
     for (const projectPath of projectPaths) {
+      const expectedRelease = releaseEvidence[projectPath];
+      assert.ok(expectedRelease, `Missing release evidence fixture for ${projectPath}`);
       const response = await page.request.get(base + projectPath);
       assert.equal(response.status(), 200);
       const data = await page.evaluate(html => {
@@ -116,6 +156,14 @@ async function screenshot(page, name) {
         return {
           stylesheet: !!doc.querySelector('link[href="../assets/project-accessibility.css"]'),
           requirements: !![...doc.querySelectorAll('h3')].find(e => e.textContent === 'Requirements'),
+          releaseHeading: doc.querySelector('.release-proof h2')?.textContent,
+          releaseVersion: doc.querySelector('.release-facts a[href*="/releases/tag/"]')?.textContent,
+          digest: doc.querySelector('.release-facts .digest code')?.textContent,
+          command: doc.querySelector('.verification-command code')?.textContent,
+          maintenance: [...doc.querySelectorAll('.release-facts dd')]
+            .map(e => e.textContent).find(text => text.includes('No update cadence')),
+          testEvidence: doc.querySelector('.test-evidence')?.textContent,
+          previewProvenance: doc.querySelector('.preview-provenance')?.textContent,
           previews: [...doc.querySelectorAll('main img')].map(img => ({
             src: img.getAttribute('src'), href: img.closest('a')?.getAttribute('href'),
             label: img.closest('a')?.getAttribute('aria-label'), target: img.closest('a')?.target
@@ -123,14 +171,29 @@ async function screenshot(page, name) {
         };
       }, await response.text());
       assert.ok(data.stylesheet && data.requirements, projectPath);
+      assert.equal(data.releaseHeading, 'Verify the official release');
+      assert.equal(data.releaseVersion, expectedRelease.version);
+      assert.equal(data.digest, expectedRelease.sha256);
+      assert.ok(data.command.includes(expectedRelease.asset));
+      assert.ok(data.command.includes(expectedRelease.sha256));
+      assert.ok(data.command.includes('Get-FileHash'));
+      assert.ok(data.maintenance);
+      assert.ok(data.previewProvenance?.toLowerCase().includes(`${expectedRelease.preview}-branch`) ||
+        data.previewProvenance?.toLowerCase().includes(`${expectedRelease.preview}-specific`));
+      assert.equal(!!data.testEvidence, !!expectedRelease.tested);
       assert.ok(data.previews.length);
       for (const preview of data.previews) {
         assert.equal(preview.href, preview.src, projectPath + ' must link the original image');
         assert.equal(preview.target, '_blank');
         assert.ok(preview.label);
       }
+      await page.setViewportSize({ width: 320, height: 900 });
+      await page.goto(base + projectPath);
+      await layout(page);
+      assert.ok(await page.locator('.verification-command pre').evaluate(element =>
+        element.scrollWidth >= element.clientWidth && getComputedStyle(element).overflowX === 'auto'));
     }
-    console.log('PASS requirements, shared stylesheet, and original-image links on all nine guides');
+    console.log('PASS release evidence, verification commands, provenance, narrow layout, and original-image links on all nine guides');
 
     await page.goto(base + '/projects/comfyui-free-local-wan-video-high-resolution.html');
     await page.locator('.preview img').evaluate(async image => {

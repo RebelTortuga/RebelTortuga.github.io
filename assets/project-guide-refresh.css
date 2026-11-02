@@ -25,6 +25,108 @@
   background: #0d2432;
 }
 
+.project-guide-refresh .release-proof {
+  margin: 28px 0;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid #315062;
+  border-radius: 16px;
+  background: #0d2432;
+}
+
+.project-guide-refresh .release-proof h2 {
+  margin: 0 0 8px;
+}
+
+.project-guide-refresh .release-proof > p {
+  max-width: 72ch;
+  margin: 0;
+}
+
+.project-guide-refresh .release-proof-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 38px);
+  margin-top: 24px;
+}
+
+.project-guide-refresh .release-facts {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-guide-refresh .release-facts div {
+  padding: 12px 0;
+  border-top: 1px solid #284553;
+}
+
+.project-guide-refresh .release-facts div:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.project-guide-refresh .release-facts dt {
+  color: #eef7f8;
+  font-weight: 750;
+}
+
+.project-guide-refresh .release-facts dd {
+  margin: 4px 0 0;
+  color: #c7d9e2;
+}
+
+.project-guide-refresh .release-facts code,
+.project-guide-refresh .verification-command code {
+  font-variant-numeric: tabular-nums;
+}
+
+.project-guide-refresh .release-facts code {
+  overflow-wrap: anywhere;
+}
+
+.project-guide-refresh .verification-command {
+  min-width: 0;
+}
+
+.project-guide-refresh .verification-command h3 {
+  margin: 0 0 8px;
+}
+
+.project-guide-refresh .verification-command p {
+  margin: 0 0 14px;
+}
+
+.project-guide-refresh .verification-command pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  border: 1px solid #3b6170;
+  border-radius: 12px;
+  background: #07131c;
+  color: #e7f5f6;
+  font-size: .82rem;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+.project-guide-refresh .verification-limit,
+.project-guide-refresh .test-evidence,
+.project-guide-refresh .preview-provenance {
+  color: #bcd1da;
+  font-size: .92rem;
+}
+
+.project-guide-refresh .verification-limit,
+.project-guide-refresh .test-evidence {
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #284553;
+}
+
+.project-guide-refresh .preview-provenance {
+  margin: 10px 0 28px;
+}
+
 .project-guide-refresh .quick-start h2 {
   margin-bottom: 8px;
 }
@@ -117,6 +219,14 @@
 }
 
 @media (max-width: 700px) {
+  .project-guide-refresh .release-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-guide-refresh .verification-command pre {
+    font-size: .76rem;
+  }
+
   .project-guide-refresh .quick-start ol {
     grid-template-columns: 1fr;
   }
