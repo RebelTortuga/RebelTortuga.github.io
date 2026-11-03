@@ -109,12 +109,15 @@ async function screenshot(page, name) {
     assert.equal((await page.request.get(base + '/assets/RebelTortuga-9-Free-Tools-2026-splash.png')).ok(), true);
     assert.equal((await page.request.get(base + '/assets/RebelTortuga-9-Free-Tools-FINAL-v3.mp4')).ok(), true);
     console.log('PASS featured video poster and local playback');
+    const projectCount = await page.locator('.project').count();
+    assert.ok(projectCount > 0, 'The homepage must contain project cards');
+    assert.match(await page.locator('[data-filter="all"]').textContent(), new RegExp(`All projects · ${projectCount}`));
     const projectPaths = await page.locator('.project-actions a:first-child')
-      .evaluateAll(links => links.map(a => new URL(a.href).pathname));
-    assert.equal(projectPaths.length, 9);
+      .evaluateAll(links => links.map(a => new URL(a.href).pathname).filter(path => path !== '/projects/repo-update-manager.html'));
+    assert.equal(projectPaths.length, Object.keys(releaseEvidence).length);
     const labels = await page.locator('.project-actions a').evaluateAll(links => links.map(a => a.ariaLabel));
-    assert.equal(new Set(labels).size, 18, 'Every project link needs a distinct accessible name');
-    for (const label of labels) assert.match(label, /^(Project guide|Source): .+/);
+    assert.equal(new Set(labels).size, projectCount * 2, 'Every project link needs a distinct accessible name');
+    for (const label of labels) assert.match(label, /^(Project guide|Product page|Source): .+/);
     assert.ok(await page.locator('.category').first().evaluate(e => parseFloat(getComputedStyle(e).fontSize) >= 12));
     const status = page.locator('#project-filter-results');
     assert.equal(await status.getAttribute('role'), 'status');
@@ -146,12 +149,13 @@ async function screenshot(page, name) {
       await screenshot(page, `home-${width}`);
       console.log(`PASS homepage layout and touch targets at ${width}px`);
     }
-    for (const [filter, count] of [['tool', 4], ['ai', 5], ['all', 9]]) {
+    for (const filter of ['tool', 'ai', 'all']) {
       const button = page.locator(`[data-filter="${filter}"]`);
       await button.focus();
       await page.keyboard.press('Enter');
+      const count = await page.locator(`.project${filter === 'all' ? '' : `[data-category="${filter}"]`}`).count();
       assert.equal(await page.locator('.project:visible').count(), count);
-      assert.equal(await status.textContent(), `${count} projects shown`);
+      assert.equal(await status.textContent(), `${count} ${count === 1 ? 'project' : 'projects'} shown`);
       assert.equal(await button.getAttribute('aria-pressed'), 'true');
       assert.ok(await button.evaluate(e => e === document.activeElement));
     }
@@ -205,7 +209,7 @@ async function screenshot(page, name) {
       assert.ok(await page.locator('.verification-command pre').evaluate(element =>
         element.scrollWidth >= element.clientWidth && getComputedStyle(element).overflowX === 'auto'));
     }
-    console.log('PASS release evidence, verification commands, provenance, narrow layout, and original-image links on all nine guides');
+    console.log(`PASS release evidence, verification commands, provenance, narrow layout, and original-image links on all ${projectPaths.length} guides`);
 
     await page.goto(base + '/projects/comfyui-free-local-wan-video-high-resolution.html');
     await page.locator('.preview img').evaluate(async image => {
