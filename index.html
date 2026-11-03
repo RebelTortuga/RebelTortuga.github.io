@@ -240,11 +240,11 @@
         <p class="workflow-note">Model files and third-party components are separate downloads. Check each project README before installing or changing a workflow.</p>
       </section>
       <div class="filter-list" role="group" aria-label="Filter projects">
-        <button type="button" class="filter" data-filter="all" aria-pressed="true">All projects · 10</button>
-        <button type="button" class="filter" data-filter="tool" aria-pressed="false">Windows &amp; gaming · 5</button>
-        <button type="button" class="filter" data-filter="ai" aria-pressed="false">ComfyUI &amp; AI · 5</button>
+        <button type="button" class="filter" data-filter="all" data-label="All projects" aria-pressed="true">All projects</button>
+        <button type="button" class="filter" data-filter="tool" data-label="Windows &amp; gaming" aria-pressed="false">Windows &amp; gaming</button>
+        <button type="button" class="filter" data-filter="ai" data-label="ComfyUI &amp; AI" aria-pressed="false">ComfyUI &amp; AI</button>
       </div>
-      <p class="sr-only" id="project-filter-results" role="status" aria-live="polite" aria-atomic="true">10 projects shown</p>
+      <p class="sr-only" id="project-filter-results" role="status" aria-live="polite" aria-atomic="true">Projects shown</p>
       <div class="project-grid" id="project-grid">
         <article class="project" data-category="tool"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/wow-diagnostic-and-repair-toolkit/main/assets/screenshot.png" alt="World of Warcraft repair toolkit interface"></div><div class="project-body"><span class="category">Windows · Gaming</span><h3>WoW Diagnostic &amp; Repair Toolkit</h3><p>Investigate World of Warcraft problems, review read-only diagnostics, and choose repairs when you need them.</p><div class="project-actions"><a href="projects/wow-diagnostic-and-repair-toolkit.html" aria-label="Project guide: WoW Diagnostic &amp; Repair Toolkit">Project guide ↗</a><a href="https://github.com/RebelTortuga/wow-diagnostic-and-repair-toolkit" aria-label="Source: WoW Diagnostic &amp; Repair Toolkit">Source</a></div></div></article>
         <article class="project" data-category="ai"><div class="preview"><img loading="lazy" src="https://raw.githubusercontent.com/RebelTortuga/comfyui-clean-slate/main/assets/clean-slate-controller.webp" alt="ComfyUI Clean Slate node preview"></div><div class="project-body"><span class="category">ComfyUI · Custom node</span><h3>ComfyUI Clean Slate</h3><p>Clear connected images and prompts while keeping workflow connections, saved files, and prompt history intact.</p><div class="project-actions"><a href="projects/comfyui-clean-slate.html" aria-label="Project guide: ComfyUI Clean Slate">Project guide ↗</a><a href="https://github.com/RebelTortuga/comfyui-clean-slate" aria-label="Source: ComfyUI Clean Slate">Source</a></div></div></article>
@@ -269,11 +269,13 @@
       const buttons = [...document.querySelectorAll('[data-filter]')];
       const cards = [...document.querySelectorAll('.project')];
       const results = document.getElementById('project-filter-results');
+      const countFor = filter => filter === 'all' ? cards.length : cards.filter(card => card.dataset.category === filter).length;
+      buttons.forEach(button => { button.textContent = `${button.dataset.label} · ${countFor(button.dataset.filter)}`; });
       buttons.forEach(button => button.addEventListener('click', () => {
         const filter = button.dataset.filter;
         buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
         cards.forEach(card => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
-        const count = cards.filter(card => !card.hidden).length;
+        const count = countFor(filter);
         results.textContent = `${count} ${count === 1 ? 'project' : 'projects'} shown`;
       }));
     })();
