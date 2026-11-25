@@ -36,11 +36,11 @@ jobs:
         with:
           # Patreon returns HTTP 403 to GitHub-hosted link checks.
           # Exclude only the two Patreon creator URL forms confirmed to return 403.
+          # Reduce GitHub-hosted 503 bursts with bounded retries and backoff.
           args: >-
             --exclude '^https://www[.]patreon[.]com/(cw/)?RebelTortuga/?$'
             --root-dir .
             --no-progress
-            # GitHub-hosted files can briefly return 503 under CI load.
             --max-concurrency 16
             --max-retries 5
             --retry-wait-time 3
