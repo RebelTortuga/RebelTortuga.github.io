@@ -30,23 +30,33 @@ jobs:
       - name: Check out website
         uses: actions/checkout@v5
       - name: Check links in the website and documentation
+        id: link-check
+        continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
           # Patreon returns HTTP 403 to GitHub-hosted link checks.
           # Exclude only the two Patreon creator URL forms confirmed to return 403.
+          # Reduce GitHub-hosted 503 bursts with bounded retries and backoff.
           args: >-
             --exclude '^https://www[.]patreon[.]com/(cw/)?RebelTortuga/?$'
             --root-dir .
             --no-progress
-            --max-retries 2
+            --max-concurrency 16
+            --max-retries 5
+            --retry-wait-time 3
             --timeout 20
             './**/*.html'
             './**/*.md'
           fail: true
           jobSummary: true
       - name: Check live website availability
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: >-
+          always() &&
+          (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
         run: |
           curl --fail --silent --show-error --location --retry 2 https://rebeltortuga.github.io/ -o /dev/null
           curl --fail --silent --show-error --location --retry 2 https://rebeltortuga.github.io/sitemap.xml -o /dev/null
+      - name: Fail if link checks failed
+        if: steps.link-check.outcome == 'failure'
+        run: exit 1
 
